@@ -1,0 +1,35 @@
+{
+  "name": "@radiocity/csv.js",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/csv.js",
+  "scripts": {
+    "test": "gulp build",
+    "install": "npm rm -g gulp gulp-cli &&  npm i -g gulp-cli && npm i -D gulpjs/gulp.git#4.0",
+    "build": "gulp build",
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radiocity/csv.js.git"
+  },
+  "keywords": [
+    "csv",
+    "parser"
+  ],
+  "author": "radiocity <radiocity@bk.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/radiocity/csv.js/issues"
+  },
+  "homepage": "https://github.com/radiocity/csv.js#readme",
+  "devDependencies": {
+    "colors": "^1.1.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-mocha": "^4.3.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}
