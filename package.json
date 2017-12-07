@@ -1,6 +1,6 @@
 {
   "name": "@radiocity/csv.js",
-  "version": "0.0.0",
+  "version": "0.3.1",
   "description": "",
   "main": "dist/csv.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "keywords": [
     "csv",
-    "parser"
+    "parser",
   ],
   "author": "radiocity <radiocity@bk.ru>",
   "license": "MIT",
