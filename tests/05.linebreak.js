@@ -22,6 +22,26 @@ describe("Custom linebreak", function() {
             deep: true
         },
         {
+            comment: "Remove empty lines (containing blank characters)",
+            input: function() {
+                var csv = new CSV(),
+                    data = csv.parse("Lorem,ipsum,dolor\n\nsit,amen,\n\n\t\t\t\t,   ,\t     \t");
+                return data;
+            },
+            expected: [["Lorem", "ipsum", "dolor"], ["sit", "amen", ""]],
+            deep: true
+        },
+        {
+            comment: "Remove empty lines (containing blank characters) 2",
+            input: function() {
+                var csv = new CSV(),
+                    data = csv.parse("Lorem,ipsum,dolor\n\n\t\t\t\t,   ,\t     \t\n\nsit,amen,");
+                return data;
+            },
+            expected: [["Lorem", "ipsum", "dolor"], ["sit", "amen", ""]],
+            deep: true
+        },
+        {
             comment: "Keep empty lines",
             input: function() {
                 var csv = new CSV({empty: true}),
@@ -42,6 +62,4 @@ describe("Custom linebreak", function() {
             deep: true
         }
     ]);
-
-
 });

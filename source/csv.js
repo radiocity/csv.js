@@ -58,6 +58,7 @@
         return string.substr(begin, end);
     };
 
+    // TODO: Refactoring
     CSV.prototype.parse = function(csv) {
         var opened = false,
             CL = "\r",
@@ -120,6 +121,12 @@
                             break;
                         }
                         column = 0;
+                        if (!this.empty) {
+                            var blank = new RegExp("^[\\s"+ this.separator +"]+$", "g");
+                            if (result[line].join(this.separator).match(blank)) {
+                                --line;
+                            }
+                        }
                         result[++line] = new Array("");
                         break;
                     case this.separator:
@@ -135,7 +142,8 @@
                 }
             }
         }
-        if (result[line].length == 1 && result[line][column].length == 0) {
+        var blank = new RegExp("^([\\s"+ this.separator +"]+)?$", "g");
+        if (result[line].join(this.separator).match(blank)) {
             result.splice(line, 1);
         }
         return result;
