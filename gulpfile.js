@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     rename = require("gulp-rename"),
     uglify = require('gulp-uglify'),
     mocha = require('gulp-mocha'),
+    argv = require('yargs').argv,
 
     config = {
         source: "source/**/*.js",
@@ -55,7 +56,13 @@ function build() {
 }
 
 function test() {
-    return gulp.src(config.tests, {read: false})
+    var filename = config.tests;
+    if (argv.name) {
+        filename = filename ?
+            filename.replace("*.", "*"+ argv.name +"*.") :
+            "*"+ argv.name.replace(".js", "") +"*.js";
+    }
+    return gulp.src(filename, {read: false})
         .pipe(plumber())
         .pipe(mocha())
         .on('error', function(){return true;}) // Prevent [DEP0018] error
@@ -72,5 +79,5 @@ function watch() {
 */
 
 gulp.task('build', gulp.series(build, test));
-
+gulp.task('test', test);
 gulp.task('default', gulp.series(build, test, watch));
